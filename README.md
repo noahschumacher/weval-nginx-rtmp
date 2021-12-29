@@ -58,34 +58,41 @@ The broadcast software is what takes in audio and video and sends it to Muuse. T
 
 
 ### Configuration - These were the setting we recommended for our service. Yours may differ.
-Once you have OBS downloaded and a confirmed Muuse account you are ready to start your first stream. Here we will walk you through the steps to do just that. <i>Please read through each step. Pressing Apply in each step will save your changes but is not required.</i>
+Once you have OBS downloaded and a confirmed Muuse account you are ready to start your first stream. Here we will walk you through the steps to do just that. *Please read through each step. Pressing Apply in each step will save your changes but is not required.*
 * **Open OBS**. If you have not downlaoded OBS or Streamlabs OBS please refer to the above section.
 * **Cancel the Auto-Configuration Wizard**. If it is your first time opening OBS you will be prompted with the Auto-Configuration Wizard. Press cancel if you see this.
 * **Navigate to the Settings**. You should see the settings button on the bottom right-hand side in the controls section.
-* **Select the <i>Stream</i> section** on the left side menu panel. Set the following options:
-    * <i>Service</i>: Custom
-    * <i>Server</i>: `rtmp://stream.muuse.live/live`
-    * <i>Stream Key</i>: [paste in your stream key]
-* **Select the <i>Output</i> section** on the left side menu.
-* **Select <i>Output Mode</i>: Advanced**. Then set the following options in the <i>Streaming</i> tab.
-  * <i>Audio Track</i>: 1
-  * <i>Bitrate</i>: 3500. Generally this should be between 2500 - 6000 depending on your Resolution and Audio qualities.
-  * <i>Keyframe Interval</i>: 2
+* **Select the *Stream* section** on the left side menu panel. Set the following options:
+    * *Service*: Custom
+    * *Server*: `rtmp://<ip-of-host>:1935/live`
+    * *Stream Key*: [paste in your stream key] (use `test` if not checking)
+* **Select the *Output* section** on the left side menu.
+* **Select *Output Mode*: Advanced**. Then set the following options in the *Streaming* tab.
+  * *Audio Track*: 1
+  * *Bitrate*: 3500. Generally this should be between 2500 - 6000 depending on your Resolution and Audio qualities.
+  * *Keyframe Interval*: 2
   * **Audio tab**
-    * <i>Audio Bitrate</i>: 192 or greater. If you are going to be streaming music we recommend 224+ to ensure high quality audio.
-* **Select the <i>Audio</i> section** on the left side menu.
-  * <i>Sample Rate</i>: 44.1kHz. Only select 48kHz if you know all source input audio is also at 48kHz
-  * <i>Channels</i>: Stereo
-* **Select the <i>Video</i> section** on the left side menu.
-  * <i>Base Resolution</i>: 1280x720. This should match your output reslution. If it does match it can increase load on your computer.
-  * <i>Output Resolution</i>: 1280x720. It can be either 1920x1080 or 1280x720 but we recommend 720p as is good quality and does not require nearly as much *bandwidth to support.
-  * <i>FPS</i>: 30. We do not recommend 60fps as it requires extremely reliable and strong upload capabilities. Choosing 60fps can cause a portion of your audience *to be unable to view your stream and is not currently recommended.
-* **Select the <i>Advanced</i> section** on the left side menu.
-  * Scroll down until you see <i>Automatically Reconnect</i>. Set the following options
-    * <i>Enable</i>: selected
-    * <i>Retry Delay</i>: 2s
-    * <i>Maximum Retries</i>: 15
+    * *Audio Bitrate*: 192 or greater. If you are going to be streaming music we recommend 224+ to ensure high quality audio.
+* **Select the *Audio* section** on the left side menu.
+  * *Sample Rate*: 44.1kHz. Only select 48kHz if you know all source input audio is also at 48kHz
+  * *Channels*: Stereo
+* **Select the *Video* section** on the left side menu.
+  * *Base Resolution*: 1280x720. This should match your output reslution. If it does match it can increase load on your computer.
+  * *Output Resolution*: 1280x720. It can be either 1920x1080 or 1280x720 but we recommend 720p as is good quality and does not require nearly as much *bandwidth to support.
+  * *FPS*: 30. We do not recommend 60fps as it requires extremely reliable and strong upload capabilities. Choosing 60fps can cause a portion of your audience *to be unable to view your stream and is not currently recommended.
+* **Select the *Advanced* section** on the left side menu.
+  * Scroll down until you see *Automatically Reconnect*. Set the following options
+    * *Enable*: selected
+    * *Retry Delay*: 2s
+    * *Maximum Retries*: 15
 * **Press okay** to save your changes.
-* **Start the stream!** Just press <i>start streaming</i> under the control panel on the right side. You should see a green or red square show up on the bottom right side of OBS followed by a kb/s number. This number informs you of your upload speed. If the square is green you are streaming with good quality. If the square is red there might be some buffering during specific segments.
+* **Start the stream!** Just press *start streaming* under the control panel on the right side. You should see a green or red square show up on the bottom right side of OBS followed by a kb/s number. This number informs you of your upload speed. If the square is green you are streaming with good quality. If the square is red there might be some buffering during specific segments.
 
 For a more complete intro to OBS this <a target="_blank" rel="noreferrer" href="https://www.youtube.com/watch?v=Muk9LfEWHeU&ab_channel=bai">video</a> is great.
+
+## Viewing the stream with VLC
+1. Open a [VLC](http://www.videolan.org/vlc/index.html) player (it also works in Raspberry Pi using `omxplayer`)
+2. Click in the "Media" menu
+3. Click in "Open Network Stream"
+4. Enter the URL from above as `rtmp://<ip_of_host>:8080/live/<key>` replacing `<ip_of_host>` with the IP of the host in which the container is running and `<key>` with the key you created in OBS Studio. For example: `rtmp://192.168.0.30:8080/live/test`
+5. Click "Play"
