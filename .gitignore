@@ -1,0 +1,7 @@
+# Ignore mounts folder with .ts files
+mounts/
+
+# macOS specific ignores
+.DS_store
+.AppleDouble
+.LSOverride
