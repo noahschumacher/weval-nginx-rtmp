@@ -102,10 +102,3 @@ The broadcast software is what takes in audio and video and sends it your stream
 * **Start the stream!** Just press *start streaming* under the control panel on the right side. You should see a green or red square show up on the bottom right side of OBS followed by a kb/s number. This number informs you of your upload speed. If the square is green you are streaming with good quality. If the square is red there might be some buffering during specific segments.
 
 For a more complete intro to OBS this <a target="_blank" rel="noreferrer" href="https://www.youtube.com/watch?v=Muk9LfEWHeU&ab_channel=bai">video</a> is great.
-
-## Viewing the stream with VLC
-1. Open a [VLC](http://www.videolan.org/vlc/index.html) player (it also works in Raspberry Pi using `omxplayer`)
-2. Click in the "Media" menu
-3. Click in "Open Network Stream"
-4. Enter the URL from above as `rtmp://<ip_of_host>:8080/live/<key>` replacing `<ip_of_host>` with the IP of the host in which the container is running and `<key>` with the key you created in OBS Studio. For example: `rtmp://192.168.0.30:8080/live/test`
-5. Click "Play"
