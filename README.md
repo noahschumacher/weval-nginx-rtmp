@@ -11,7 +11,7 @@ This was originally designed for a live audio-video music streaming website I wa
 
 ## Quick-Start
 1. Download OBS
-2. Open OBS and set the following in _____:
+2. Open OBS and set the following in the Stream section:
     * *Service*: Custom
     * *Server*: `rtmp://<ip-of-host>:1935/live`
     * *Stream Key*: [paste in your stream key] (use `test` if not checking)
@@ -23,7 +23,7 @@ This was originally designed for a live audio-video music streaming website I wa
 5. Download and open a [VLC](http://www.videolan.org/vlc/index.html) player (it also works in Raspberry Pi using `omxplayer`)
    * Click in the "Media" menu
    * Click in "Open Network Stream"
-   * Enter the URL from above as `rtmp://<ip_of_host>:8080/live/<key>` replacing `<ip_of_host>` with the IP of the host in which the container is running and `<key>` with the key you created in OBS Studio. For example: `rtmp://192.168.0.30:8080/live/test`
+   * Enter the URL from above as `http://<ip_of_host>:8080/live/<key>.m3u8` replacing `<ip_of_host>` with the IP of the host in which the container is running and `<key>` with the key you created in OBS Studio. For example: `rtmp://192.168.0.30:8080/live/test.m3u8`
    * Click "Play"!
 
 You should stream your live stream coming through with some latency!
