@@ -9,14 +9,26 @@ Out of the box this docker images comes with:
 
 This was originally designed for a live audio-video music streaming website I was building called Muuse. At its peak we were able to handle 15+ concurrent video streamers with 1.5k+ concurrent viewers and sub 12second latency.
 
-## Building & Starting the Streaming Server Image
-1. `cd` into the top level of `weval-nginx-rtmp`
-2. Run and build image with `docker-compose.yml` with `docker-compose up`
-    * If you want to be detatched from the running container of the build image add `-d` or `--detatch` to the above command
+## Quick-Start
+1. Download OBS
+2. Open OBS and set the following in _____:
+    * *Service*: Custom
+    * *Server*: `rtmp://<ip-of-host>:1935/live`
+    * *Stream Key*: [paste in your stream key] (use `test` if not checking)
+3. Start the docker-container:
+    * `cd` into the top level of `weval-nginx-rtmp`
+    * Run and build image with `docker-compose.yml` with `docker-compose up`
+      * If you want to be detatched from the running container of the build image add `-d` or `--detatch` to the above command
+4. Press `Start Streaming` under the control panel on the right side. You should see a green or red square show up on the bottom right side of OBS followed by a kb/s number. This number informs you of your upload speed. If the square is green you are streaming with good quality. If the square is red there might be some buffering during specific segments.
+5. Download and open a [VLC](http://www.videolan.org/vlc/index.html) player (it also works in Raspberry Pi using `omxplayer`)
+   * Click in the "Media" menu
+   * Click in "Open Network Stream"
+   * Enter the URL from above as `rtmp://<ip_of_host>:8080/live/<key>` replacing `<ip_of_host>` with the IP of the host in which the container is running and `<key>` with the key you created in OBS Studio. For example: `rtmp://192.168.0.30:8080/live/test`
+   * Click "Play"!
 
-**NOTE**
-* If you make changes to anything in directory you can quickly rebuild an updated image with `docker-compose up --build`
-* To quickly remove all the built of images run `docker system prune`
+You should stream your live stream coming through with some latency!
+
+*Note: If your computer is on the older side of the device you are running does not have a fairly powerful CPU it may struggle to handle encoding 3 different AV qualities. If this is the case there will be severe latency and choppyness.*
 
 
 ## `Dockerfile`
@@ -49,16 +61,17 @@ The nginx.conf files is already highly commented to be very clear as to what eac
     * In this configuration we are only enabling hls live streaming.
 
 
-## Getting Started with OBS
+## Further OBS Optimizations
+By aligning OBS settings and the desired encoding we can further reduce compute, and latency.
 
-### Broadcast Software
-The broadcast software is what takes in audio and video and sends it to Muuse. The most common software for this is called <a target="_blank" rel="noreferrer" href="https://obsproject.com/">Open Broadcast Software (OBS)</a>. OBS is an incredibly powerful tool, and it’s **free**! <a target="_blank" rel="noreferrer" href="https://streamlabs.com/">Streamlabs OBS</a> is another free option that is basically OBS with a little larger feature sweet built out. There are some paid options such as Wirecast and VidBlasterX. Though, for almost all cases, OBS/StreamlabsOBS is all you will need. The rest of this tutorial assumes you are using OBS or Streamlabs OBS as they generally the same layout and setting structure.
+
+The broadcast software is what takes in audio and video and sends it your streaming server. The most common software for this is called <a target="_blank" rel="noreferrer" href="https://obsproject.com/">Open Broadcast Software (OBS)</a>. OBS is an incredibly powerful tool, and it’s **free**! <a target="_blank" rel="noreferrer" href="https://streamlabs.com/">Streamlabs OBS</a> is another free option that is basically OBS with a little larger feature sweet built out. There are some paid options such as Wirecast and VidBlasterX. Though, for almost all cases, OBS/StreamlabsOBS is all you will need. The rest of this tutorial assumes you are using OBS or Streamlabs OBS as they generally the same layout and setting structure.
 * To download OBS follow the <a target="_blank" rel="noreferrer" href="https://obsproject.com/">guide</a> for your operating system.*
 * To download Streamlabs OBS click <a target="_blank" rel="noreferrer" href="https://streamlabs.com/">here</a>.*
 
 
-### Configuration - These were the setting we recommended for our service. Yours may differ.
-Once you have OBS downloaded and a confirmed Muuse account you are ready to start your first stream. Here we will walk you through the steps to do just that. *Please read through each step. Pressing Apply in each step will save your changes but is not required.*
+### Configuration - *these were the setting we recommended for our service; yours may differ*.
+*Please read through each step. Pressing Apply in each step will save your changes but is not required.*
 * **Open OBS**. If you have not downlaoded OBS or Streamlabs OBS please refer to the above section.
 * **Cancel the Auto-Configuration Wizard**. If it is your first time opening OBS you will be prompted with the Auto-Configuration Wizard. Press cancel if you see this.
 * **Navigate to the Settings**. You should see the settings button on the bottom right-hand side in the controls section.
