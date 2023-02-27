@@ -2,7 +2,7 @@ version: "2.2"
 services:
   streaming-server:
     build:
-      dockerfile: .
+      dockerfile: ./Dockerfile
       context: .
     container_name: nginx-rtmp-server
     volumes:
